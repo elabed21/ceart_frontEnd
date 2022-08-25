@@ -1,0 +1,44 @@
+<!-- Modal -->
+
+<!--   Headear -->
+<div class="topbar stick">
+  <div class="logo">
+    <a title="" href="newsfeed.html"><img src="assets/images/logo.png" alt=""></a>
+  </div>
+
+  <div class="top-area">
+    <ul class="main-menu">
+      <li>
+        <a href="#" title="">Home</a>
+
+      </li>
+      <li>
+        <a href="#" title="">Categories</a>
+        <ul>
+          <li *ngFor="let category of categories">
+            <a href="{{FRONT_END_URL}}{{ category.name }}" title=""> {{ category.name }}</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="{{FRONT_END_URL}}produits" title="">Produits</a>
+
+      </li>
+      <li>
+        <a class="bouton" href="{{FRONT_END_URL}}profil/abonnement">offres</a>
+
+
+      </li>
+    </ul>
+    <div class="login-form">
+      <form>
+        <!-- 	<input type="text" placeholder="User Name">
+          <input type="password" placeholder="Passoword">
+          <button class="button log"  [routerLink]="['']">Login</button> -->
+        <button class="button  reg" [routerLink]="['signup']"> Rejoignez-nous</button>
+      </form>
+    </div>
+
+
+  </div>
+</div>

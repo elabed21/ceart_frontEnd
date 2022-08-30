@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import * as $ from 'jquery';
 import {DataService} from "../../services/data.service";
 import {ProductModel} from "../../models/product.model";
+import {ShoppingCartService} from "../../services/shoppingCart.service";
 
 @Component({
   selector: 'app-home',
@@ -10,8 +11,9 @@ import {ProductModel} from "../../models/product.model";
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  productList: any;
-
+  productList: any[];
+  private singleProduct: any[];
+  private isAdded: any[];
 
 //ajout dynamique des images pour caroussel
   /*data = [
@@ -23,15 +25,45 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private dataService: DataService,
+    private shoppingCartService: ShoppingCartService,
   ) {
   }
 
   ngOnInit() {
-    $.getScript('assets/js/strip.pkgd.min.js');
-    $.getScript('assets/js/main.min.js');
-    $.getScript('assets/js/script.js');
+    this.getProducts();
 
   }
 
+
+  getProducts() {
+    // @ts-ignore
+    this.dataService.getCollection(new ProductModel(),'/all')
+      .pipe()
+      .subscribe(
+        (response: any) => {
+          if (response) {
+            this.productList = response;
+          }
+        }, (error) => {
+
+        });
+  }
+
+  addToCart(event : any, productId: number) :any{
+
+    // If Item is already added then display alert message
+    if (event.target.classList.contains('btn-success')) {
+      alert('This product is already added into cart.');
+      return false;
+    }
+
+    this.singleProduct = this.productList.filter((product: any) => {
+      return product.id === productId;
+    });
+
+    // this.cartItems.push(this.singleProduct[0]);
+
+    this.shoppingCartService.addProductToCart(this.singleProduct[0]);
+  }
 
 }

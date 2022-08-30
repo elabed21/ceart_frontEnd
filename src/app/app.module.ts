@@ -13,10 +13,17 @@ import {ExtraServiceService} from "./services/extra-service.service";
 import {ObjectService} from "./services/object.service";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {JwtInterceptor} from "./services/JwtInterceptor";
+import {FilePondModule} from 'ngx-filepond';
+import {MatIconModule} from "@angular/material/icon";
+import {ShoppingCartService} from "./services/shoppingCart.service";
+import {ShoppingCartComponent} from './shared/shopping-cart/shopping-cart.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import {FactureComponent} from "./modules/panier/facture/facture.component";
 
 @NgModule({
   declarations: [
     AppComponent,
+    FactureComponent
   ],
   imports: [
     BrowserModule,
@@ -27,6 +34,9 @@ import {JwtInterceptor} from "./services/JwtInterceptor";
     FormsModule,
     ReactiveFormsModule,
     MatSnackBarModule,
+    FilePondModule,
+    MatIconModule,
+    MatDialogModule,
 
   ],
   providers: [
@@ -36,9 +46,12 @@ import {JwtInterceptor} from "./services/JwtInterceptor";
     ExtraServiceService,
     ObjectService,
     //{provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true},
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+    ShoppingCartService,
+
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ShoppingCartComponent]
 })
 export class AppModule {
 }

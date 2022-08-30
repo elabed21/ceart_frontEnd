@@ -1,11 +1,15 @@
 import {ApiResourceInterface} from './api-resource.interface';
 
-export class ProductModel implements ApiResourceInterface {
+export class ProductProfileModel implements ApiResourceInterface {
   constructor(
     public id: number,
-    public name: string,
-    public category: string,
-    public price: number,
+    public email: string,
+    public status: string,
+    public fullname: string,
+    public shop_name: string,
+    public adress: string,
+    public phone: string,
+    public products: any,
     public pictures: any,
     public shopname: string,
     public subResourceUri: string) {
@@ -21,11 +25,11 @@ export class ProductModel implements ApiResourceInterface {
   }
 
   getCollectionUri(): string {
-    return 'product';
+    return 'seller';
   }
 
   getItemUri(): string {
-    return 'product/' + this.id;
+    return 'seller/' + this.id;
   }
 
   getSubResourceUri(): string {

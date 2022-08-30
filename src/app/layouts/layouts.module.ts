@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { ProduitsComponent } from '../modules/categorie/produits/produits.component';
+import {FilePondModule} from "ngx-filepond";
 
 
 
@@ -26,14 +27,16 @@ import { ProduitsComponent } from '../modules/categorie/produits/produits.compon
     ProduitsComponent
 
   ],
-  imports: [
-    BrowserModule,
-    CommonModule,
-    RouterModule,
-    SharedModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,],
+    imports: [
+        BrowserModule,
+        CommonModule,
+        RouterModule,
+        SharedModule,
+        HttpClientModule,
+        FormsModule,
+        ReactiveFormsModule,
+        FilePondModule,
+    ],
 
 })
 export class LayoutsModule { }

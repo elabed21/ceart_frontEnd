@@ -1,0 +1,20 @@
+<div style="z-index: 5" class="product-cart" *ngIf="cartItems.length > 0" cdkDrag>
+  <ul>
+    <li *ngFor="let item of cartItems">
+      <img class="card-img-top" src="data:image/gif;base64,{{item.pictures[0]?.data}}" alt="Card image cap">
+       <p>{{item.name}} : </p>
+      <strong>{{item.price | currency:'TND'}}</strong>
+      <button type="button" class="close" style="margin-left: 10%" aria-label="Remove Item" (click)="removeItemFromCart(item.id)">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </li>
+  </ul>
+  <div class="cart-total">
+    <p><button type="button" class="btn btn-outline-primary btn-sm" (click)="emptyCart()">Vider la Catre</button></p>
+    <p><a type="button" class="btn btn-outline-primary btn-sm" (click)="saveShopList(cartItems , totalAmmount)" [routerLink]="['/cart']" [state]="{ cartItems , totalAmmount}">Confirmer</a></p>
+    <p class="text-right">
+      <strong class="d-block">Total: </strong>
+      <span class="d-block">{{totalAmmount | currency:'DT'}}</span>
+    </p>
+  </div>
+</div>

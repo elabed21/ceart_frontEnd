@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {ProductModel} from "../../models/product.model";
 import {CategoryModel} from "../../models/category.model";
 import {DataService} from "../../services/data.service";
 import {environment} from "../../../environments/environment";
-
+import {MatDialog} from '@angular/material/dialog';
+import {ShoppingCartService} from "../../services/shoppingCart.service";
 
 @Component({
   selector: 'app-header',
@@ -19,8 +19,11 @@ export class HeaderComponent implements OnInit {
   constructor(
     private router: Router,
     private dataService: DataService,
+    private dialog: MatDialog,
+    private shoppingCartService: ShoppingCartService,
   ) {
   }
+
 
   ngOnInit(): void {
     this.getAllCategories();
@@ -37,6 +40,10 @@ export class HeaderComponent implements OnInit {
             this.categories = response;
           }
         });
+  }
+
+  getShopItemNumber(): number {
+    return this.shoppingCartService.getProductsLength();
   }
 }
 
